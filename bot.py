@@ -4,19 +4,22 @@ import discord
 
 from dotenv import load_dotenv
 
+from discord.ext import commands
+
+#se cargan los permisos del bot
 intents = discord.Intents.default()
+intents.members = True
 intents.message_content = True
 
+#se carga el token desde el archivo .env
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
-client = discord.Client(intents=intents)
+#se establece el comando para ejecutar el bot con los respectivos permisos
+bot = commands.Bot(command_prefix='!', intents=intents, description='puras weas')
 
-@client.event
-async def on_ready():
-    print(f'We have logged in as {client.user}\n')
+@bot.command()
+async def mensaje(ctx, mensaje):
+    await ctx.send(mensaje)
 
-    for guild in client.guilds:
-        print(f'conectado a ' + guild.name +'\n')
-
-client.run(TOKEN)
+bot.run(TOKEN)
