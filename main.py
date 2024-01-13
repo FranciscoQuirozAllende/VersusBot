@@ -19,6 +19,8 @@ def run():
     @bot.hybrid_command()
     async def spam(ctx, cantidad: int):
         var = ("@everyone\n")
+        #agregar protección contra mucha cantidad de spam xDDD, pornele limite de 500
+        #agregar protección si mandan el comando sin nada
         i = 1
         if cantidad == 0:
             await ctx.send("aweonao ql como se te ocurre poner eso xDDDDD")
@@ -29,6 +31,8 @@ def run():
 
     @bot.hybrid_command()
     async def versus(ctx, tamaño_equipo: int, jugadores):
+
+        #agregar limite al tamaño del equipo, ponele sus 8
         lista_jugadores = jugadores.split(',')
         equipo1= []
         equipo2= []
@@ -43,6 +47,10 @@ def run():
 
         respuesta = "Equipo 1: " + ' '.join(equipo1)  + "\nEquipo 2: " + ' '.join(equipo2)
         await ctx.send(respuesta)
+
+    @bot.hybrid_command()
+    async def gif_diario():#mandar un gif del top 10 de giphy todos los días 
+        return
 
     #este comando es el que inicializa el botd
     #tiene que ir al final para que se carge todo lo que esta antes
